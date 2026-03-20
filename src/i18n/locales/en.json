@@ -1,0 +1,53 @@
+{
+  "mainPage": {
+    "todoApp": "ToDo App",
+    "employeeApp": "Employee Rendering with Redux",
+    "loginPage": "Login Page",
+    "changeLanguage": "Change Language"
+  },
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "submit": "Login",
+    "success": "Login successful",
+    "error": "Wrong username or password",
+    "usernameRequired": "Please input your username!",
+    "passwordRequired": "Please input your password!"
+  },
+  "employee": {
+    "title": "Employees Rendering",
+    "fullName": "Full Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "avatar": "Avatar",
+    "avatarUrl": "Avatar URL",
+    "firstName": "First Name",
+    "addTitle": "Add employee",
+    "editTitle": "Edit employee",
+    "updateSuccess": "Employee updated successfully!",
+    "firstNameRequired": "Please enter First Name",
+    "lastNameRequired": "Please enter Last Name",
+    "emailRequired": "Please enter email",
+    "firstNamePlaceholder": "Enter First Name",
+    "lastNamePlaceholder": "Enter Last Name",
+    "emailPlaceholder": "Enter email",
+    "avatarPlaceholder": "Enter avatar URL",
+    "imageError": "Image not found",
+    "editAction": "Edit",
+    "deleteAction": "Delete",
+    "search": "Search...",
+    "searchPlaceholder": "Search..."
+  },
+  "todo": {
+    "title": "Todo App",
+    "placeholder": "Add a new todo...",
+    "emptyAlert": "Please add a task",
+    "filterAll": "All",
+    "filterActive": "Active",
+    "filterCompleted": "Completed",
+    "clearCompleted": "Clear Completed",
+    "itemLeft": " item left",
+    "itemsLeft": " items left",
+    "search": "Search"
+  }
+}

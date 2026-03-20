@@ -1,0 +1,51 @@
+{
+  "mainPage": {
+    "todoApp": "ToDo App",
+    "employeeApp": "Employee Rendering with Redux",
+    "loginPage": "Login Page",
+    "changeLanguage": "Đổi ngôn ngữ"
+  },
+  "login": {
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "submit": "Đăng nhập",
+    "success": "Đăng nhập thành công",
+    "error": "Sai tài khoản hoặc mật khẩu",
+    "usernameRequired": "Vui lòng nhập tên đăng nhập!",
+    "passwordRequired": "Vui lòng nhập mật khẩu!"
+  },
+  "employee": {
+    "title": "Nhân viên",
+    "firstName": "Họ",
+    "lastName": "Tên",
+    "email": "Email",
+    "avatar": "Ảnh đại diện",
+    "avatarUrl": "URL ảnh đại diện",
+    "addTitle": "Thêm nhân viên",
+    "editTitle": "Chỉnh sửa nhân viên",
+    "editAction": "Sửa",
+    "deleteAction": "Xóa",
+    "updateSuccess": "Cập nhật nhân viên thành công!",
+    "firstNameRequired": "Vui lòng nhập họ",
+    "lastNameRequired": "Vui lòng nhập tên",
+    "emailRequired": "Vui lòng nhập email",
+    "firstNamePlaceholder": "Nhập Họ",
+    "lastNamePlaceholder": "Nhập Tên",
+    "emailPlaceholder": "Nhập email",
+    "avatarPlaceholder": "Nhập đường dẫn tới avatar",
+    "imageError": "Lỗi hoặc chưa có ảnh",
+    "searchPlaceholder": "Tìm kiếm..."
+  },
+  "todo": {
+    "title": "Ứng dụng việc cần làm",
+    "placeholder": "Thêm việc mới cần làm...",
+    "emptyAlert": "Hãy thêm task",
+    "filterAll": "Tất cả",
+    "filterActive": "Đang hoạt động",
+    "filterCompleted": "Hoàn thành",
+    "clearCompleted": "Xóa đã hoàn thành",
+    "itemLeft": " việc còn lại",
+    "itemsLeft": " việc còn lại",
+    "search": "Tìm"
+  }
+}

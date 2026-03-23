@@ -1,7 +1,7 @@
 const test = () => {
   return (
     <>
-      <p>Đang bị conflict mới</p>
+      <p>Đã sửa xong conflict</p>
     </>
   );
 };

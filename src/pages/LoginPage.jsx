@@ -1,5 +1,4 @@
-import { Button, Checkbox, Form, Input } from 'antd';
-import { useState } from 'react';
+import { Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { mockUser } from '../data/mockData';

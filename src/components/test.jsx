@@ -1,4 +1,6 @@
 const test = () => {
-  return <div>test</div>;
+  return (<>
+    <p>đây là conflict</p>
+  </>)
 };
 export default test;

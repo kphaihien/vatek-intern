@@ -2,12 +2,10 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { mockUser } from '../data/mockData';
 const LoginPage = () => {
   const { t } = useTranslation();
-  const mockUser = {
-    username: 'hien',
-    password: '123123',
-  };
+
   const navigate = useNavigate();
   const onFinish = (values) => {
     try {

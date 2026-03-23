@@ -84,3 +84,8 @@ export const mockDataTodo = [
   { id: 3, title: 'Master JavaScript', completed: false },
   { id: 4, title: 'Master Nodejs', completed: false },
 ];
+
+export const mockUser = {
+  username: 'hien',
+  password: '123123',
+};

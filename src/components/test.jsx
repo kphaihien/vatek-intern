@@ -1,6 +1,6 @@
 const test = () => {
   return (<>
-    <p>Đang bị conflict</p>
+    <p>Đang bị conflict mới</p>
   </>)
 };
 export default test;

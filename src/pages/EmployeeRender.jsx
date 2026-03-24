@@ -14,7 +14,6 @@ const EmployeeRender = () => {
   const [type, setType] = useState('');
   useApi('https://reqres.in/api/users?page=1');
   const employeeList = useSelector((state) => state.employees.employeeList);
-
   const filterEmployees = useMemo(() => {
     if (!searchParams) return employeeList;
 

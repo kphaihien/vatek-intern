@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setEmployeeList } from '../redux/employeeSlice';
@@ -31,7 +30,7 @@ export const useApi = (url) => {
 
 export const useMutation = ({ method, url, body }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState[null];
+  const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
   const mutate = async () => {
     try {
@@ -42,7 +41,7 @@ export const useMutation = ({ method, url, body }) => {
         data: body,
       });
       setMessage('Successfully');
-      return respone.data;
+      // return respone.data;
     } catch (error) {
       console.log(error);
       setError(error);

@@ -41,7 +41,7 @@ export const useMutation = ({ method, url, body }) => {
         data: body,
       });
       setMessage('Successfully');
-      // return respone.data;
+      return respone.data;
     } catch (error) {
       console.log(error);
       setError(error);

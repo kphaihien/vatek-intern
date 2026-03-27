@@ -4,6 +4,10 @@ import EmployeeRender from '../pages/EmployeeRender';
 import LoginPage from '../pages/LoginPage';
 import MainPage from '../pages/MainPage';
 import App from '../App';
+import Profile from '../pages/Profile';
+import PrivateRoute from './PrivateRoute';
+import GuestRoute from './GuestRoute';
+import Test from '../pages/Test';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -15,7 +19,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/todoapp',
-        element: <ToDoApp />,
+        element: (
+          <PrivateRoute>
+            <ToDoApp />
+          </PrivateRoute>
+        ),
       },
       {
         path: '/employees',
@@ -23,7 +31,23 @@ const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <LoginPage />,
+        element: (
+          <GuestRoute>
+            <LoginPage />,
+          </GuestRoute>
+        ),
+      },
+      {
+        path: '/profile',
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/test',
+        element: <Test />,
       },
     ],
   },

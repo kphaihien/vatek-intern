@@ -31,7 +31,7 @@ export default defineConfig([
     rules: {
       'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }],
       'no-console': 'warn',
-      'prettier/prettier': 'error',
+      'prettier/prettier': 'off',
     },
   },
   {

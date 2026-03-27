@@ -3,7 +3,8 @@
     "todoApp": "ToDo App",
     "employeeApp": "Employee Rendering with Redux",
     "loginPage": "Login Page",
-    "changeLanguage": "Đổi ngôn ngữ"
+    "changeLanguage": "Đổi ngôn ngữ",
+    "profile": "Trang cá nhân"
   },
   "login": {
     "username": "Tên đăng nhập",
@@ -46,6 +47,14 @@
     "clearCompleted": "Xóa đã hoàn thành",
     "itemLeft": " việc còn lại",
     "itemsLeft": " việc còn lại",
-    "search": "Tìm"
+    "search": "Tìm",
+    "createdBy": "Thêm bởi: ",
+    "undefined": "Không xác định"
+  },
+  "profile": {
+    "logout": "Đăng xuất",
+    "backHome": "Về trang chủ",
+    "name": "Tên: ",
+    "email": "Email: "
   }
 }

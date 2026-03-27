@@ -3,7 +3,8 @@
     "todoApp": "ToDo App",
     "employeeApp": "Employee Rendering with Redux",
     "loginPage": "Login Page",
-    "changeLanguage": "Change Language"
+    "changeLanguage": "Change Language",
+    "profile": "Profile"
   },
   "login": {
     "username": "Username",
@@ -48,6 +49,14 @@
     "clearCompleted": "Clear Completed",
     "itemLeft": " item left",
     "itemsLeft": " items left",
-    "search": "Search"
+    "search": "Search",
+    "createdBy": "Created By: ",
+    "undefined": "Undefined"
+  },
+  "profile": {
+    "logout": "Log out",
+    "backHome": "Home Page",
+    "name": "Name: ",
+    "email": "Email: "
   }
 }

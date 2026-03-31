@@ -41,7 +41,7 @@ const Task = ({ task, setSelectedTask, selectedTask, toogleTask, editTask, email
           </>
         )}
 
-        {isEditing && (
+        {isEditing && (<>
           <input
             type="text"
             className="underline"
@@ -51,6 +51,11 @@ const Task = ({ task, setSelectedTask, selectedTask, toogleTask, editTask, email
               setNewTitle(e.target.value);
             }}
           />
+          <p className="ml-auto text-sm">
+              {t('todo.createdBy')}
+              {task?.emailSender || `${t('todo.undefined')}`}
+            </p>
+          </>
         )}
         {selectedTask === task.id && (
           <div onClick={handleEditing} className="font-bold text-black cursor-pointer ">

@@ -7,7 +7,6 @@ import App from '../App';
 import Profile from '../pages/Profile';
 import PrivateRoute from './PrivateRoute';
 import GuestRoute from './GuestRoute';
-import Test from '../pages/Test';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -44,10 +43,6 @@ const router = createBrowserRouter([
             <Profile />
           </PrivateRoute>
         ),
-      },
-      {
-        path: '/test',
-        element: <Test />,
       },
     ],
   },

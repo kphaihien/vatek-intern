@@ -1,8 +1,7 @@
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import ToDoApp from '../pages/ToDoApp'; 
-
+import ToDoApp from '../pages/ToDoApp';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -44,15 +43,12 @@ jest.mock('../data/mockData', () => ({
   ],
 }));
 
-
-
 const createMockStore = (userState = { email: 'test@example.com' }) =>
   configureStore({
     reducer: {
       user: () => userState,
     },
   });
-
 
 const renderWithStore = (userState) => {
   const store = createMockStore(userState);
@@ -63,8 +59,6 @@ const renderWithStore = (userState) => {
   );
 };
 
-
-
 describe('ToDoApp', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -73,7 +67,6 @@ describe('ToDoApp', () => {
       mockOn._callbacks[event] = callback;
     });
   });
-
 
   describe('Render', () => {
     it('hiển thị tiêu đề ứng dụng', () => {
@@ -111,7 +104,6 @@ describe('ToDoApp', () => {
       expect(screen.getByText('2 items left')).toBeInTheDocument();
     });
   });
-
 
   describe('Thêm task', () => {
     it('emit socket khi thêm task hợp lệ', () => {
@@ -161,10 +153,7 @@ describe('ToDoApp', () => {
     });
   });
 
-
-
   describe('Toggle task', () => {
-
     it('cập nhật trạng thái task khi nhận sự kiện doneTaskFromServer', async () => {
       renderWithStore();
       act(() => {
@@ -175,7 +164,6 @@ describe('ToDoApp', () => {
       });
     });
   });
-
 
   describe('Filter task', () => {
     it('filter Active: chỉ hiển thị task chưa hoàn thành', () => {
@@ -204,8 +192,6 @@ describe('ToDoApp', () => {
     });
   });
 
-
-
   describe('Tìm kiếm task', () => {
     it('lọc task theo từ khoá tìm kiếm', () => {
       renderWithStore();
@@ -220,9 +206,7 @@ describe('ToDoApp', () => {
       fireEvent.change(searchInput, { target: { value: 'task 1' } });
       expect(screen.getByText('Task 1')).toBeInTheDocument();
     });
-
   });
-
 
   describe('Clear Completed', () => {
     it('xoá tất cả task đã hoàn thành', () => {
@@ -239,8 +223,6 @@ describe('ToDoApp', () => {
       expect(screen.getByText('2 items left')).toBeInTheDocument();
     });
   });
-
-
 
   describe('Socket lifecycle', () => {
     it('kết nối socket với email người dùng khi mount', () => {

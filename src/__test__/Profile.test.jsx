@@ -101,7 +101,6 @@ describe('Profile component', () => {
     });
 
     it('không điều hướng khi bấm nút Logout', () => {
-
       renderProfile(mockUser, true);
       fireEvent.click(screen.getByText('profile.logout'));
       expect(mockNavigate).not.toHaveBeenCalled();

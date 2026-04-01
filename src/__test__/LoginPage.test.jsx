@@ -7,8 +7,6 @@ import LoginPage from '../pages/LoginPage';
 import userReducer from '../redux/userSlice';
 import { mockUser } from '../data/mockData';
 
-
-
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -18,7 +16,6 @@ jest.mock('react-router-dom', () => ({
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),
 }));
-
 
 let googleSuccessHandler;
 let googleErrorHandler;
@@ -85,8 +82,6 @@ jest.mock('antd', () => {
   return { Form, Input, Button };
 });
 
-
-
 function buildStore() {
   return configureStore({
     reducer: { user: userReducer },
@@ -116,14 +111,11 @@ function fillAndSubmit(username, password) {
   fireEvent.submit(screen.getByTestId('login-form'));
 }
 
-
 describe('LoginPage', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.spyOn(window, 'alert').mockImplementation(() => {});
   });
-
-
 
   describe('Rendering', () => {
     it('hiển thị form đăng nhập', () => {
@@ -161,7 +153,6 @@ describe('LoginPage', () => {
       expect(screen.getByTestId('fb-login')).toBeInTheDocument();
     });
   });
-
 
   describe('Form interaction', () => {
     it('cho phép nhập vào trường username', () => {
@@ -205,7 +196,6 @@ describe('LoginPage', () => {
     });
   });
 
-
   describe('Login thất bại (sai credentials)', () => {
     it('hiển thị alert lỗi', async () => {
       renderLoginPage();
@@ -235,7 +225,6 @@ describe('LoginPage', () => {
   describe('Google Login', () => {
     it('dispatch setUser và navigate về /profile khi Google login thành công', async () => {
       const { dispatchSpy } = renderLoginPage();
-
 
       global.fetch = jest.fn().mockResolvedValue({
         json: async () => ({

@@ -35,11 +35,12 @@ export default defineConfig([
     },
   },
   {
-    files: ['src/**/*.test.{js,jsx}', 'src/**/*.spec.{js,jsx}'],
+    files: ['src/**/*.test.{js,jsx}', 'src/**/*.spec.{js,jsx}','src/setupTests.js'],
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.jest, 
+        ...globals.jest,
+        ...globals.node,
         require: 'readonly',
       },
     },

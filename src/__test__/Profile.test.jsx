@@ -22,15 +22,13 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
 }));
 
-
 const mockUser = {
   name: 'Nguyen Van A',
   email: 'nguyenvana@example.com',
   picture: 'https://example.com/avatar.jpg',
 };
 
-
-const buildStore=(userState = mockUser, freezeOnLogout = false)=> {
+const buildStore = (userState = mockUser, freezeOnLogout = false) => {
   const safeReducer = (state = userState, action) => {
     if (freezeOnLogout && action.type === logOutUser().type) return state;
     return userReducer(state, action);
@@ -39,9 +37,9 @@ const buildStore=(userState = mockUser, freezeOnLogout = false)=> {
     reducer: { user: safeReducer },
     preloadedState: { user: userState },
   });
-}
+};
 
-const renderProfile=(userState = mockUser, freezeOnLogout = false)=> {
+const renderProfile = (userState = mockUser, freezeOnLogout = false) => {
   const store = buildStore(userState, freezeOnLogout);
   const dispatchSpy = jest.spyOn(store, 'dispatch');
   const utils = render(
@@ -51,9 +49,8 @@ const renderProfile=(userState = mockUser, freezeOnLogout = false)=> {
       </MemoryRouter>
     </Provider>
   );
-  return { ...utils, store,dispatchSpy };
-}
-
+  return { ...utils, store, dispatchSpy };
+};
 
 describe('Profile component', () => {
   beforeEach(() => {
@@ -95,7 +92,6 @@ describe('Profile component', () => {
     });
   });
 
-
   describe('Navigation', () => {
     it('điều hướng về "/" khi bấm nút Back Home', () => {
       renderProfile();
@@ -113,7 +109,6 @@ describe('Profile component', () => {
     });
   });
 
-
   describe('Logout', () => {
     it('gọi googleLogout khi bấm nút Logout', () => {
       const { googleLogout } = require('@react-oauth/google');
@@ -123,7 +118,7 @@ describe('Profile component', () => {
     });
 
     it('dispatch action logOutUser khi bấm nút Logout', () => {
-      const {dispatchSpy } = renderProfile(mockUser, true);
+      const { dispatchSpy } = renderProfile(mockUser, true);
       fireEvent.click(screen.getByText('profile.logout'));
       expect(dispatchSpy).toHaveBeenCalledWith(logOutUser());
     });

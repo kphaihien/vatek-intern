@@ -41,7 +41,6 @@
 //   });
 // });
 
-
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Task from '../components/Task';
@@ -52,23 +51,22 @@ jest.mock('react-i18next', () => ({
 }));
 
 // ─── Fixtures ─────────────────────────────────────────────────────────────────
-const mockTask     = { id: 1, title: 'Learn Something',      completed: false };
-const completedTask = { id: 2, title: 'Learn Something Else', completed: true  };
+const mockTask = { id: 1, title: 'Learn Something', completed: false };
+const completedTask = { id: 2, title: 'Learn Something Else', completed: true };
 
 const buildProps = (overrides = {}) => {
   return {
-    task:            mockTask,
+    task: mockTask,
     setSelectedTask: jest.fn(),
-    selectedTask:    null,
-    toogleTask:      jest.fn(),
-    editTask:        jest.fn(),
+    selectedTask: null,
+    toogleTask: jest.fn(),
+    editTask: jest.fn(),
     ...overrides,
   };
-}
+};
 
 // ─── Tests ────────────────────────────────────────────────────────────────────
 describe('Task component', () => {
-
   // ── Rendering ───────────────────────────────────────────────────────────────
   describe('Rendering', () => {
     it('hiển thị tiêu đề task', () => {
@@ -190,7 +188,7 @@ describe('Task component', () => {
     it('click lại nút edit lần 2 để thoát chế độ edit (toggle)', () => {
       render(<Task {...buildProps({ selectedTask: mockTask.id })} />);
       const svg = document.querySelector('svg');
-      fireEvent.click(svg); // 
+      fireEvent.click(svg); //
       expect(screen.getByRole('textbox')).toBeInTheDocument();
       fireEvent.click(svg); //
       expect(screen.queryByRole('textbox')).not.toBeInTheDocument();

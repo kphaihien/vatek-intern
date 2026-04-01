@@ -21,7 +21,7 @@ const Task = ({ task, setSelectedTask, selectedTask, toogleTask, editTask, email
     <>
       <div
         onClick={handleChooseTask}
-        className={`flex items-center px-2 py-2 hover:cursor-pointer gap-2 rounded-sm ${selectedTask === task.id ? 'bg-purple-400 text-white' : 'bg-gray-200'}`}
+        className={`flex items-center gap-2 rounded-sm px-2 py-2 hover:cursor-pointer ${selectedTask === task.id ? 'bg-purple-400 text-white' : 'bg-gray-200'}`}
       >
         <input
           onClick={(e) => e.stopPropagation()}
@@ -31,7 +31,7 @@ const Task = ({ task, setSelectedTask, selectedTask, toogleTask, editTask, email
         />
         {!isEditing && (
           <>
-            <span className={`${task.completed ? 'line-through text-gray-500' : 'text-gray-800'}`}>
+            <span className={`${task.completed ? 'text-gray-500 line-through' : 'text-gray-800'}`}>
               {task.title}
             </span>
             <p className="ml-auto text-sm">
@@ -41,31 +41,32 @@ const Task = ({ task, setSelectedTask, selectedTask, toogleTask, editTask, email
           </>
         )}
 
-        {isEditing && (<>
-          <input
-            type="text"
-            className="underline"
-            onKeyDown={handleKeyDown}
-            value={newTitle}
-            onChange={(e) => {
-              setNewTitle(e.target.value);
-            }}
-          />
-          <p className="ml-auto text-sm">
+        {isEditing && (
+          <>
+            <input
+              type="text"
+              className="underline"
+              onKeyDown={handleKeyDown}
+              value={newTitle}
+              onChange={(e) => {
+                setNewTitle(e.target.value);
+              }}
+            />
+            <p className="ml-auto text-sm">
               {t('todo.createdBy')}
               {task?.emailSender || `${t('todo.undefined')}`}
             </p>
           </>
         )}
         {selectedTask === task.id && (
-          <div onClick={handleEditing} className="font-bold text-black cursor-pointer ">
+          <div onClick={handleEditing} className="cursor-pointer font-bold text-black">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6 "
+              className="size-6"
             >
               <path
                 strokeLinecap="round"

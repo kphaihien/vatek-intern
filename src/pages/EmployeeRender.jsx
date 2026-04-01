@@ -5,18 +5,21 @@ import { useMemo, useState } from 'react';
 import { deleteEmployee } from '../redux/employeeSlice';
 import EmployeeModal from '../components/EmployeeModal';
 import { useTranslation } from 'react-i18next';
+
 const { Search } = Input;
+
 const EmployeeRender = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingEmployee, setEditingEmployee] = useState({});
   const [searchParams, setSearchParams] = useState('');
   const [type, setType] = useState('');
+
   useApi('https://reqres.in/api/users?page=1');
   const employeeList = useSelector((state) => state.employees.employeeList);
+
   const filterEmployees = useMemo(() => {
     if (!searchParams) return employeeList;
-
     return employeeList.filter(
       (empl) =>
         empl.lastname?.toLowerCase().includes(searchParams.toLowerCase()) ||
@@ -24,45 +27,53 @@ const EmployeeRender = () => {
         empl.email?.toLowerCase().includes(searchParams.toLowerCase())
     );
   }, [employeeList, searchParams]);
+
   const dispatch = useDispatch();
 
   const columns = [
     {
       title: `${t('employee.avatar')}`,
       dataIndex: 'avatar',
-      render: (img) => <img src={img} alt="Lỗi hoặc chưa có ảnh" className="max-w-25 max-h-20" />,
+      width: 120,
+      render: (img) => (
+        <img
+          src={img}
+          alt="avatar"
+          className="h-12 w-12 rounded-full object-cover sm:h-16 sm:w-16"
+        />
+      ),
     },
     {
       title: `${t('employee.firstName')}`,
-      fixed: 'start',
       dataIndex: 'first_name',
+      width: 120,
       render: (firstname) => <p>{firstname}</p>,
     },
     {
       title: `${t('employee.lastName')}`,
-      fixed: 'start',
       dataIndex: 'last_name',
+      width: 120,
       render: (lastname) => <p>{lastname}</p>,
     },
     {
       title: `${t('employee.email')}`,
       dataIndex: 'email',
-      render: (email) => <p>{email}</p>,
+      responsive: ['sm'],
+      render: (email) => <p className="break-all">{email}</p>,
     },
     {
       title: `${t('employee.editAction')}`,
-      fixed: 'end',
-      width: 80,
+      fixed: 'right',
+      width: 60,
       render: (_, record) => (
         <button onClick={() => handleEditUser(record)}>
-          {' '}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="text-green-600 cursor-pointer size-6"
+            className="size-5 cursor-pointer text-green-600 sm:size-6"
           >
             <path
               strokeLinecap="round"
@@ -75,7 +86,8 @@ const EmployeeRender = () => {
     },
     {
       title: `${t('employee.deleteAction')}`,
-      width: 80,
+      fixed: 'right',
+      width: 60,
       render: (_, record) => (
         <button onClick={() => handleDeleteEmployee(record)}>
           <svg
@@ -84,7 +96,7 @@ const EmployeeRender = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="text-red-500 cursor-pointer size-6 "
+            className="size-5 cursor-pointer text-red-500 sm:size-6"
           >
             <path
               strokeLinecap="round"
@@ -96,62 +108,67 @@ const EmployeeRender = () => {
       ),
     },
   ];
+
   const handleEditUser = (record) => {
     setType('edit');
     setEditingEmployee(record);
     setIsModalOpen(true);
   };
-  const handleDeleteEmployee = (record) => {
-    dispatch(deleteEmployee(record));
-  };
+  const handleDeleteEmployee = (record) => dispatch(deleteEmployee(record));
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingEmployee({});
   };
+
   return (
     <>
-      <div className="flex flex-col h-screen justify-start gap-3 p-3 bg-gray-200">
-        <h1 className="pt-2 pl-3 text-4xl font-bold text-black">{t('employee.title')}</h1>
-        <div className="flex items-center justify-between pl-4">
+      <div className="flex min-h-screen flex-col gap-3 bg-gray-200 p-3">
+        <h1 className="pt-2 pl-3 text-2xl font-bold text-black sm:text-4xl">
+          {t('employee.title')}
+        </h1>
+
+        <div className="flex items-center justify-between gap-2 px-3">
           <Search
-            className="max-w-50"
+            className="w-full max-w-xs sm:max-w-sm"
             size="large"
             onChange={(e) => setSearchParams(e.target.value)}
             placeholder={t('employee.searchPlaceholder')}
           />
-
           <Button
             onClick={() => {
-              {
-                setType('add');
-                setIsModalOpen(true);
-              }
+              setType('add');
+              setIsModalOpen(true);
             }}
             type="primary"
-            className="self-end mr-4 cursor-pointer w-15 h-15"
+            className="cursor-pointer"
+            size="large"
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            }
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
+            <span className="hidden sm:inline">{t('employee.addTitle')}</span>
           </Button>
         </div>
-        <Table className="px-4" dataSource={filterEmployees} columns={columns}></Table>
+
+        <div className="overflow-hidden px-3">
+          <Table dataSource={filterEmployees} columns={columns} rowKey="id" scroll={{ x: 500 }} />
+        </div>
       </div>
+
       {isModalOpen && (
-        <EmployeeModal
-          type={type}
-          editingEmployee={editingEmployee}
-          onClose={() => handleCloseModal()}
-        />
+        <EmployeeModal type={type} editingEmployee={editingEmployee} onClose={handleCloseModal} />
       )}
     </>
   );
 };
+
 export default EmployeeRender;

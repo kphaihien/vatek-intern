@@ -72,7 +72,6 @@ jest.mock('antd', () => {
   return { Form, Input, Modal, message, InputNumber: () => null, Select: () => null };
 });
 
-
 jest.mock('@ant-design/icons', () => ({
   EditOutlined: () => <span data-testid="edit-icon" />,
   PlusCircleOutlined: () => <span data-testid="plus-icon" />,

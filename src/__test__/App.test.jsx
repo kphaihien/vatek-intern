@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   Outlet: () => <div data-testid="outlet" />,
@@ -12,7 +11,6 @@ jest.mock('../i18n/i18n', () => ({
   language: 'vi',
 }));
 
-
 jest.mock('antd', () => ({
   ConfigProvider: ({ children }) => <>{children}</>,
   FloatButton: ({ onClick, tooltip, icon }) => (
@@ -22,13 +20,12 @@ jest.mock('antd', () => ({
   ),
 }));
 
-
 jest.mock('@ant-design/icons', () => ({
   SyncOutlined: () => <span data-testid="sync-icon" />,
 }));
 
 import App from '../App';
-import i18n from '../i18n/i18n'; 
+import i18n from '../i18n/i18n';
 
 const renderApp = () =>
   render(

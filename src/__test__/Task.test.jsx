@@ -6,7 +6,6 @@ jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),
 }));
 
-
 const mockTask = { id: 1, title: 'Learn Something', completed: false };
 const completedTask = { id: 2, title: 'Learn Something Else', completed: true };
 
@@ -21,9 +20,7 @@ const buildProps = (overrides = {}) => {
   };
 };
 
-
 describe('Task component', () => {
-
   describe('Rendering', () => {
     it('hiển thị tiêu đề task', () => {
       render(<Task {...buildProps()} />);
@@ -66,7 +63,6 @@ describe('Task component', () => {
       expect(document.querySelector('svg')).toBeInTheDocument();
     });
   });
-
 
   describe('Interactions', () => {
     it('gọi setSelectedTask khi click vào task', () => {
@@ -142,9 +138,9 @@ describe('Task component', () => {
     it('click lại nút edit lần 2 để thoát chế độ edit (toggle)', () => {
       render(<Task {...buildProps({ selectedTask: mockTask.id })} />);
       const svg = document.querySelector('svg');
-      fireEvent.click(svg); 
+      fireEvent.click(svg);
       expect(screen.getByRole('textbox')).toBeInTheDocument();
-      fireEvent.click(svg); 
+      fireEvent.click(svg);
       expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
     });
   });

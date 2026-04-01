@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import employeeReducer from '../redux/employeeSlice';
 import EmployeeModal from '../components/EmployeeModal';
 
-// Mock antd
 jest.mock('antd', () => {
   const React = require('react');
 
@@ -73,7 +72,7 @@ jest.mock('antd', () => {
   return { Form, Input, Modal, message, InputNumber: () => null, Select: () => null };
 });
 
-// Mock antd icons
+
 jest.mock('@ant-design/icons', () => ({
   EditOutlined: () => <span data-testid="edit-icon" />,
   PlusCircleOutlined: () => <span data-testid="plus-icon" />,

@@ -1,56 +1,12 @@
-// import { render, screen, fireEvent } from '@testing-library/react';
-// import Task from '../components/Task';
-
-// const mockTask = { id: 1, title: 'Learn Something', completed: false };
-// const completedTask = { id: 2, title: 'Learn Something Else', completed: true };
-
-// const defaultProps = {
-//   task: mockTask,
-//   setSelectedTask: jest.fn(),
-//   selectedTask: null,
-//   toogleTask: jest.fn(),
-//   editTask: jest.fn(),
-// };
-
-// describe('Task', () => {
-//   it('render task title', () => {
-//     render(<Task {...defaultProps} />);
-//     expect(screen.getByText('Learn Something')).toBeInTheDocument();
-//   });
-
-//   it('render checkedbox checked for completed task', () => {
-//     render(<Task {...defaultProps} task={completedTask} />);
-//     expect(screen.getByRole('checkbox')).toBeChecked();
-//   });
-
-//   it('render checkedbox unchecked for uncompleted task ', () => {
-//     render(<Task {...defaultProps} />);
-//     expect(screen.getByRole('checkbox')).not.toBeChecked();
-//   });
-
-//   it('call toggleTask when user clicks checkedbox ', () => {
-//     render(<Task {...defaultProps} />);
-//     fireEvent.click(screen.getByRole('checkbox'));
-//     expect(defaultProps.toogleTask).toHaveBeenCalledWith(mockTask.id);
-//   });
-//   it('shows input field when editing', () => {
-//     render(<Task {...defaultProps} selectedTask={mockTask.id} />);
-//     fireEvent.click(screen.getByRole('button'));
-//     const inputs = screen.getAllByRole('textbox');
-//     expect(inputs.length).toBeGreaterThan(0);
-//   });
-// });
-
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Task from '../components/Task';
 
-// ─── Mock i18n ────────────────────────────────────────────────────────────────
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),
 }));
 
-// ─── Fixtures ─────────────────────────────────────────────────────────────────
+
 const mockTask = { id: 1, title: 'Learn Something', completed: false };
 const completedTask = { id: 2, title: 'Learn Something Else', completed: true };
 
@@ -65,9 +21,9 @@ const buildProps = (overrides = {}) => {
   };
 };
 
-// ─── Tests ────────────────────────────────────────────────────────────────────
+
 describe('Task component', () => {
-  // ── Rendering ───────────────────────────────────────────────────────────────
+
   describe('Rendering', () => {
     it('hiển thị tiêu đề task', () => {
       render(<Task {...buildProps()} />);
@@ -107,12 +63,11 @@ describe('Task component', () => {
 
     it('hiển thị nút edit (svg) khi task đang được chọn', () => {
       render(<Task {...buildProps({ selectedTask: mockTask.id })} />);
-      // SVG edit button render trong div, truy cập qua svg element
       expect(document.querySelector('svg')).toBeInTheDocument();
     });
   });
 
-  // ── Interactions ────────────────────────────────────────────────────────────
+
   describe('Interactions', () => {
     it('gọi setSelectedTask khi click vào task', () => {
       const props = buildProps();
@@ -136,7 +91,6 @@ describe('Task component', () => {
     });
   });
 
-  // ── Editing ─────────────────────────────────────────────────────────────────
   describe('Editing', () => {
     it('hiển thị input text khi click nút edit', () => {
       render(<Task {...buildProps({ selectedTask: mockTask.id })} />);
@@ -172,7 +126,7 @@ describe('Task component', () => {
       fireEvent.change(input, { target: { value: 'Updated Title' } });
       fireEvent.keyDown(input, { key: 'Enter' });
       expect(props.editTask).toHaveBeenCalledWith(mockTask.id, 'Updated Title');
-      // Sau khi Enter, input edit biến mất
+
       expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
     });
 
@@ -188,9 +142,9 @@ describe('Task component', () => {
     it('click lại nút edit lần 2 để thoát chế độ edit (toggle)', () => {
       render(<Task {...buildProps({ selectedTask: mockTask.id })} />);
       const svg = document.querySelector('svg');
-      fireEvent.click(svg); //
+      fireEvent.click(svg); 
       expect(screen.getByRole('textbox')).toBeInTheDocument();
-      fireEvent.click(svg); //
+      fireEvent.click(svg); 
       expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
     });
   });

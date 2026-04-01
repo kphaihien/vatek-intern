@@ -101,8 +101,7 @@ describe('Profile component', () => {
     });
 
     it('không điều hướng khi bấm nút Logout', () => {
-      // freezeOnLogout = true: giữ user trong store sau dispatch,
-      // tránh re-render crash vào user.picture
+
       renderProfile(mockUser, true);
       fireEvent.click(screen.getByText('profile.logout'));
       expect(mockNavigate).not.toHaveBeenCalled();

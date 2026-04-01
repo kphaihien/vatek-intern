@@ -7,7 +7,7 @@ import LoginPage from '../pages/LoginPage';
 import userReducer from '../redux/userSlice';
 import { mockUser } from '../data/mockData';
 
-// ─── Mocks ────────────────────────────────────────────────────────────────────
+
 
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
@@ -19,7 +19,7 @@ jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),
 }));
 
-// Lưu callback onSuccess/onError để test có thể kích hoạt thủ công
+
 let googleSuccessHandler;
 let googleErrorHandler;
 jest.mock('@react-oauth/google', () => ({
@@ -85,7 +85,7 @@ jest.mock('antd', () => {
   return { Form, Input, Button };
 });
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+
 
 function buildStore() {
   return configureStore({
@@ -116,7 +116,6 @@ function fillAndSubmit(username, password) {
   fireEvent.submit(screen.getByTestId('login-form'));
 }
 
-// ─── Tests ────────────────────────────────────────────────────────────────────
 
 describe('LoginPage', () => {
   beforeEach(() => {
@@ -124,7 +123,7 @@ describe('LoginPage', () => {
     jest.spyOn(window, 'alert').mockImplementation(() => {});
   });
 
-  // ── Rendering ───────────────────────────────────────────────────────────────
+
 
   describe('Rendering', () => {
     it('hiển thị form đăng nhập', () => {
@@ -163,7 +162,6 @@ describe('LoginPage', () => {
     });
   });
 
-  // ── Form interaction ────────────────────────────────────────────────────────
 
   describe('Form interaction', () => {
     it('cho phép nhập vào trường username', () => {
@@ -180,8 +178,6 @@ describe('LoginPage', () => {
       expect(input).toHaveValue('123123');
     });
   });
-
-  // ── Login thành công ────────────────────────────────────────────────────────
 
   describe('Login thành công (đúng credentials)', () => {
     it('hiển thị alert thành công', async () => {
@@ -209,7 +205,6 @@ describe('LoginPage', () => {
     });
   });
 
-  // ── Login thất bại ──────────────────────────────────────────────────────────
 
   describe('Login thất bại (sai credentials)', () => {
     it('hiển thị alert lỗi', async () => {
@@ -237,13 +232,11 @@ describe('LoginPage', () => {
     });
   });
 
-  // ── Google Login ────────────────────────────────────────────────────────────
-
   describe('Google Login', () => {
     it('dispatch setUser và navigate về /profile khi Google login thành công', async () => {
       const { dispatchSpy } = renderLoginPage();
 
-      // Mock fetch trả về profile Google
+
       global.fetch = jest.fn().mockResolvedValue({
         json: async () => ({
           sub: 'google-id-123',

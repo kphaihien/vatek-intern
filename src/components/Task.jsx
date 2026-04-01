@@ -1,72 +1,70 @@
 import React from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
 const Task = ({ task, setSelectedTask, selectedTask, toogleTask, editTask, emailUser }) => {
   const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.title);
-  const handleChooseTask = () => {
-    setSelectedTask(task.id);
-  };
+
+  const handleChooseTask = () => setSelectedTask(task.id);
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       setIsEditing(false);
       editTask(task.id, newTitle);
     }
   };
-  const handleEditing = () => {
-    setIsEditing(!isEditing);
-  };
+
+  const handleEditing = () => setIsEditing(!isEditing);
+
   return (
-    <>
-      <div
-        onClick={handleChooseTask}
-        className={`flex items-center gap-2 rounded-sm px-2 py-2 hover:cursor-pointer ${selectedTask === task.id ? 'bg-purple-400 text-white' : 'bg-gray-200'}`}
-      >
+    <div
+      onClick={handleChooseTask}
+      className={`flex flex-col gap-1 rounded-sm px-2 py-2 hover:cursor-pointer sm:flex-row sm:items-center sm:gap-2 ${selectedTask === task.id ? 'bg-purple-400 text-white' : 'bg-gray-200'}`}
+    >
+      <div className="flex w-full items-center gap-2">
         <input
           onClick={(e) => e.stopPropagation()}
           onChange={() => toogleTask(task.id)}
           type="checkbox"
           checked={task.completed}
+          className="shrink-0"
         />
-        {!isEditing && (
-          <>
-            <span className={`${task.completed ? 'text-gray-500 line-through' : 'text-gray-800'}`}>
-              {task.title}
-            </span>
-            <p className="ml-auto text-sm">
-              {t('todo.createdBy')}
-              {task?.emailSender || `${t('todo.undefined')}`}
-            </p>
-          </>
-        )}
 
-        {isEditing && (
-          <>
-            <input
-              type="text"
-              className="underline"
-              onKeyDown={handleKeyDown}
-              value={newTitle}
-              onChange={(e) => {
-                setNewTitle(e.target.value);
-              }}
-            />
-            <p className="ml-auto text-sm">
-              {t('todo.createdBy')}
-              {task?.emailSender || `${t('todo.undefined')}`}
-            </p>
-          </>
+        {isEditing ? (
+          <input
+            type="text"
+            className="min-w-0 flex-1 bg-transparent underline outline-none"
+            onKeyDown={handleKeyDown}
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            onClick={(e) => e.stopPropagation()}
+          />
+        ) : (
+          <span
+            className={`min-w-0 flex-1 wrap-break-word ${
+              task.completed ? 'text-gray-500 line-through' : 'text-gray-800'
+            }`}
+          >
+            {task.title}
+          </span>
         )}
         {selectedTask === task.id && (
-          <div onClick={handleEditing} className="cursor-pointer font-bold text-black">
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              handleEditing();
+            }}
+            className="shrink-0 cursor-pointer font-bold text-black"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-5 sm:size-6"
             >
               <path
                 strokeLinecap="round"
@@ -77,7 +75,10 @@ const Task = ({ task, setSelectedTask, selectedTask, toogleTask, editTask, email
           </div>
         )}
       </div>
-    </>
+      <p className="truncate pl-5 text-xs text-gray-500 sm:ml-auto sm:shrink-0 sm:pl-0 sm:text-sm">
+        {t('todo.createdBy')} {task?.emailSender || t('todo.undefined')}
+      </p>
+    </div>
   );
 };
 
